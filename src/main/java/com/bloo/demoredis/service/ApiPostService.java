@@ -2,6 +2,7 @@ package com.bloo.demoredis.service;
 
 import com.bloo.demoredis.dto.PostResponse;
 import com.bloo.demoredis.repository.PostRepository;
+import com.bloo.demoredis.util.CacheKey;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class ApiPostService {
 
     private final PostRepository postRepository;
 
-    @Cacheable(value = "getPosts")
+    @Cacheable(value = CacheKey.POSTS, key = "#")
     public List<PostResponse> findAllPosts () {
         var posts = postRepository.findAll();
 

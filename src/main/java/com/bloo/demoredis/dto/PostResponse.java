@@ -1,6 +1,7 @@
 package com.bloo.demoredis.dto;
 
 import com.bloo.demoredis.entity.Post;
+import java.io.Serializable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,11 +17,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public class PostResponse {
+public class PostResponse implements Serializable {
 
     private String title;
     private String content;
-
 
     public static PostResponse of ( Post post) {
         return PostResponse.builder()
@@ -28,5 +28,4 @@ public class PostResponse {
             .content(post.getContent())
             .build();
     }
-
 }
